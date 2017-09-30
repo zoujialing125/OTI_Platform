@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="9d39d15ffdda4ddbaa3aa3f760ba5a76" Name="Diagram1">
+        <EntityTypeShape EntityType="ForecastModel.BookMethod" Width="1.5" PointX="2.75" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="ForecastModel.ClientDetail" Width="1.5" PointX="0.75" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="ForecastModel.ClientList" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ForecastModel.forecast_carrierCode" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ForecastModel.forecast_list" Width="2" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ForecastModel.forecast_portCode" Width="1.5" PointX="7.125" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="ForecastModel.FK_BookMethod_SCAC" ManuallyRouted="false" />
+        <AssociationConnector Association="ForecastModel.FK_ClientList_Client" ManuallyRouted="false" />
+        <AssociationConnector Association="ForecastModel.FK_forecast_list_Client" ManuallyRouted="false" />
+        <AssociationConnector Association="ForecastModel.FK_forecast_list_SCAC" ManuallyRouted="false" />
+        <AssociationConnector Association="ForecastModel.FK_forecast_list_POD" ManuallyRouted="false" />
+        <AssociationConnector Association="ForecastModel.FK_forecast_list_POL" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="ForecastModel.BrokerList" Width="1.5" PointX="4.5" PointY="9.75" />
+        <EntityTypeShape EntityType="ForecastModel.CarrierAgentList" Width="1.5" PointX="8.125" PointY="9.75" />
+        <EntityTypeShape EntityType="ForecastModel.COList" Width="1.5" PointX="6.375" PointY="9.75" />
+        <EntityTypeShape EntityType="ForecastModel.MLOGEntityList" Width="1.5" PointX="9.875" PointY="9.75" />
+        <EntityTypeShape EntityType="ForecastModel.SHList" Width="1.5" PointX="0.75" PointY="9.75" />
+        <EntityTypeShape EntityType="ForecastModel.WHSList" Width="1.5" PointX="2.75" PointY="9.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

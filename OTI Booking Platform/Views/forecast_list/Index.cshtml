@@ -1,0 +1,226 @@
+﻿@model IEnumerable<OTI_Booking_Platform.Models.forecast_list>
+
+@{
+    ViewBag.Title = "Forecast List";
+    Layout = "~/Views/Shared/_LayoutSidebar.cshtml";
+    ViewBag.PageHeader = "Forecast";
+    ViewBag.PageDescription = "Your Forecast List";
+}
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title">Forecast List</h3>
+                <div class="box-tools">
+                    <div>@Html.ActionLink("Create New", "Create")</div>
+                    
+                    @*<div class="input-group input-group-sm" style="width: 150px;">
+                        <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
+
+                        <div class="input-group-btn">
+                            <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                        </div>
+                    </div>*@
+                </div>
+            </div>
+            <div class="box-body table-responsive">
+                <table class="table table-hover table-bordered" id="tb-forecast">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.UID)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ETD_Week)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ETD)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.String1)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.VSL)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.VOY)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.S_C)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.POL_Name)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.POD_Name)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Forecast_TEU)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.POD_Region)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Remarks)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Over_Book)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.CT_Feedback)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Booked_TEU)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Cancelled_TEU)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Balance_TEU)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Submit_Time)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.CT_Time)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.CAR_Time)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.String2)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Dpt)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Team_Leader)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Team_Name)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.OP_Type)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ClientDetail.TLUID)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.forecast_carrierCode.SCAC)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.forecast_portCode_pod.Port_Name)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.forecast_portCode_pol.Port_Name)
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.UID)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ETD_Week)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ETD)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.String1)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.VSL)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.VOY)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.S_C)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.POL_Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.POD_Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Forecast_TEU)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.POD_Region)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Remarks)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Over_Book)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CT_Feedback)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Booked_TEU)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Cancelled_TEU)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Balance_TEU)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Submit_Time)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CT_Time)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CAR_Time)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.String2)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Dpt)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Team_Leader)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Team_Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.OP_Type)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ClientDetail.TLUID)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.forecast_carrierCode.SCAC)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.forecast_portCode_pod.Port_Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.forecast_portCode_pol.Port_Name)
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                                    @Html.ActionLink("Details", "Details", new { id = item.id }) |
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.id })
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,95 @@
+﻿@using WebHelpers.Mvc5
+
+
+
+<aside class="main-sidebar">
+    <section class="sidebar">
+        @* BEGIN Search *@
+        <form action="#" method="get" class="sidebar-form" id="sidebar-form">
+            <div class="input-group">
+                <input type="text" name="q" class="form-control" placeholder="Search..." id="search-input">
+                <span class="input-group-btn">
+                    <button type="submit" name="search" id="search-btn" class="btn btn-flat">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </span>
+            </div>
+        </form>
+        @* END Search *@
+        @* BEGIN Menu *@
+        <ul class="sidebar-menu tree" data-widget="tree">
+            <li class="header">MAIN NAVIGATION</li>
+            <li class="@Url.IsLinkActive("Index", "Home")">
+                <a href="@Url.Action("Index", "Home")"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a>
+            </li>
+            <li class="@Url.IsLinkActive("Index", "forecast_list")">
+                <a href="@Url.Action("Index", "forecast_list")"><i class="fa fa-line-chart"></i> <span>OTI Forecast</span></a>
+            </li>
+            <li class="@Url.IsLinkActive("Index", "BookingList")">
+                <a href="@Url.Action("Index", "forecast_list")"><i class="fa fa-list-alt"></i> <span>OTI Booking</span></a>
+            </li>
+            
+            <li class="treeview @Url.IsLinkActive("AdminOptions")">
+                <a href="#">
+                    <i class="fa fa-cog"></i> <span>Admin Options</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="treeview @Url.IsLinkActive("ReferenceTables", "AdminOptions")">
+                        <a href="#">
+                            <i class="fa fa-table"></i> <span>Reference Tables</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li class="@Url.IsLinkActive("tab-clientDetails","ReferenceTables", "AdminOptions")">
+                                <a href="@Url.Action("ReferenceTables/tab-clientDetails", "AdminOptions")"><i class="fa fa-circle-o"></i> <span>Client Details</span></a>
+                            </li>
+                            <li class="@Url.IsLinkActive("tab-clientList","ReferenceTables", "AdminOptions")">
+                                <a href="@Url.Action("ReferenceTables/tab-clientList", "AdminOptions")"><i class="fa fa-circle-o"></i> <span>Client BE code</span></a>
+                            </li>
+                            <li class="@Url.IsLinkActive("tab-COList","ReferenceTables", "AdminOptions")">
+                                <a href="@Url.Action("ReferenceTables/tab-COList", "AdminOptions")"><i class="fa fa-circle-o"></i> <span>CO List</span></a>
+                            </li>
+                            <li class="@Url.IsLinkActive("tab-SHList","ReferenceTables", "AdminOptions")">
+                                <a href="@Url.Action("ReferenceTables/tab-SHList", "AdminOptions")"><i class="fa fa-circle-o"></i> <span>SH List</span></a>
+                            </li>
+                            <li class="@Url.IsLinkActive("tab-WHSList","ReferenceTables", "AdminOptions")">
+                                <a href="@Url.Action("ReferenceTables/tab-WHSList", "AdminOptions")"><i class="fa fa-circle-o"></i> <span>WHS List</span></a>
+                            </li>
+                            <li class="@Url.IsLinkActive("tab-bookMethod","ReferenceTables", "AdminOptions")">
+                                <a href="@Url.Action("ReferenceTables/tab-bookMethod", "AdminOptions")"><i class="fa fa-circle-o"></i> <span>Book Method</span></a>
+                            </li>
+                            <li class="@Url.IsLinkActive("tab-brokerList","ReferenceTables", "AdminOptions")">
+                                <a href="@Url.Action("ReferenceTables/tab-brokerList", "AdminOptions")"><i class="fa fa-circle-o"></i> <span>Broker List</span></a>
+                            </li>
+                            <li class="@Url.IsLinkActive("tab-carrierCodeList","ReferenceTables", "AdminOptions")">
+                                <a href="@Url.Action("ReferenceTables/tab-carrierCodeList", "AdminOptions")"><i class="fa fa-circle-o"></i> <span>Carrier Code</span></a>
+                            </li>
+                            <li class="@Url.IsLinkActive("tab-carrierAgentList","ReferenceTables", "AdminOptions")">
+                                <a href="@Url.Action("ReferenceTables/tab-carrierAgentList", "AdminOptions")"><i class="fa fa-circle-o"></i> <span>Carrier Agent</span></a>
+                            </li>
+                            <li class="@Url.IsLinkActive("tab-portCodeList","ReferenceTables", "AdminOptions")">
+                                <a href="@Url.Action("ReferenceTables/tab-portCodeList", "AdminOptions")"><i class="fa fa-circle-o"></i> <span>Port Code</span></a>
+                            </li>
+                            <li class="@Url.IsLinkActive("tab-MlogList","ReferenceTables", "AdminOptions")">
+                                <a href="@Url.Action("ReferenceTables/tab-MlogList", "AdminOptions")"><i class="fa fa-circle-o"></i> <span>Mlog List</span></a>
+                            </li>
+                        </ul>
+                        
+                    </li>
+                    <li class="@Url.IsLinkActive("Others","Options", "AdminOptions")">
+                        <a href="@Url.Action("ReferenceTables", "AdminOptions")"><i class="fa fa-table"></i> <span>Others</span></a>
+                    </li>
+
+                    
+                </ul>
+            </li>
+            
+        </ul>
+        @* END Menu *@
+    </section>
+</aside>

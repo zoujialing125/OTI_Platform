@@ -1,0 +1,704 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ForecastModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BookMethod">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Prefix" Type="nvarchar" MaxLength="3" Nullable="false" />
+          <Property Name="SCAC" Type="nvarchar" MaxLength="4" Nullable="false" />
+          <Property Name="BookingMethod" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="OPSPIC" Type="nvarchar" MaxLength="6" Nullable="false" />
+          <Property Name="PreAsign" Type="nvarchar" MaxLength="1" Nullable="false" />
+          <Property Name="OPSName" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="OPSTel" Type="nvarchar" MaxLength="4" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BrokerList">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BrokerCode" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Prefix" Type="nvarchar" MaxLength="3" Nullable="false" />
+          <Property Name="BrokerName" Type="nvarchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CarrierAgentList">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BrokerAgentCode" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="Prefix" Type="nvarchar" MaxLength="3" Nullable="false" />
+          <Property Name="BrokerAgentName" Type="nvarchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ClientDetails">
+          <Key>
+            <PropertyRef Name="Client" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Client" Type="nvarchar" MaxLength="60" Nullable="false" />
+          <Property Name="TLUID" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Team" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="Dept" Type="nvarchar" MaxLength="6" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ClientList">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CNEEBECode" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Client" Type="nvarchar" MaxLength="60" Nullable="false" />
+        </EntityType>
+        <EntityType Name="COList">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CNEECode" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="CNEEName" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="CNEEAdd" Type="nvarchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="forecast_carrierCode">
+          <Key>
+            <PropertyRef Name="SCAC" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SCAC" Type="nvarchar" MaxLength="4" Nullable="false" />
+        </EntityType>
+        <EntityType Name="forecast_list">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UID" Type="nvarchar" MaxLength="6" Nullable="false" />
+          <Property Name="CNEE_Name" Type="nvarchar" MaxLength="60" Nullable="false" />
+          <Property Name="ETD_Week" Type="int" StoreGeneratedPattern="Computed" />
+          <Property Name="ETD" Type="date" Nullable="false" />
+          <Property Name="Carrier_SCAC" Type="nvarchar" MaxLength="4" Nullable="false" />
+          <Property Name="String1" Type="nvarchar" MaxLength="20" />
+          <Property Name="VSL" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="VOY" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="S_C" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="POL_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="POD_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Forecast_TEU" Type="int" />
+          <Property Name="POD_Region" Type="nvarchar" MaxLength="10" />
+          <Property Name="Remarks" Type="nvarchar" MaxLength="200" />
+          <Property Name="Over_Book" Type="nvarchar" MaxLength="10" />
+          <Property Name="CT_Feedback" Type="int" />
+          <Property Name="Booked_TEU" Type="int" />
+          <Property Name="Cancelled_TEU" Type="int" />
+          <Property Name="Balance_TEU" Type="int" StoreGeneratedPattern="Computed" />
+          <Property Name="Submit_Time" Type="datetime" Nullable="false" />
+          <Property Name="CT_Time" Type="datetime" />
+          <Property Name="CAR_Time" Type="datetime" />
+          <Property Name="String2" Type="nvarchar" MaxLength="20" />
+          <Property Name="Dpt" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Team_Leader" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Team_Name" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="POL" Type="nvarchar" MaxLength="8" Nullable="false" />
+          <Property Name="POD" Type="nvarchar" MaxLength="8" Nullable="false" />
+          <Property Name="OP_Type" Type="varchar" MaxLength="3" Nullable="false" />
+        </EntityType>
+        <EntityType Name="forecast_portCode">
+          <Key>
+            <PropertyRef Name="Port_Code" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Port_Code" Type="nvarchar" MaxLength="8" Nullable="false" />
+          <Property Name="Port_Name" Type="nvarchar" MaxLength="60" />
+          <Property Name="Port_OBCut" Type="nvarchar" MaxLength="2" />
+          <Property Name="Port_Region" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="MLOGEntityList">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MLOGEntity" Type="nvarchar" MaxLength="7" />
+          <Property Name="Prefix" Type="nvarchar" MaxLength="3" />
+          <Property Name="POLRegion" Type="nvarchar" MaxLength="3" />
+        </EntityType>
+        <EntityType Name="SHList">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SHCode" Type="nvarchar" MaxLength="20" />
+          <Property Name="SHName" Type="nvarchar" MaxLength="200" />
+          <Property Name="SHAdd" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="WHSList">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="WarehouseCode" Type="nvarchar" MaxLength="20" />
+          <Property Name="Prefix" Type="nvarchar" MaxLength="3" />
+          <Property Name="WarehouseName" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <Association Name="FK_BookMethod_SCAC">
+          <End Role="forecast_carrierCode" Type="Self.forecast_carrierCode" Multiplicity="1" />
+          <End Role="BookMethod" Type="Self.BookMethod" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="forecast_carrierCode">
+              <PropertyRef Name="SCAC" />
+            </Principal>
+            <Dependent Role="BookMethod">
+              <PropertyRef Name="SCAC" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClientList_Client">
+          <End Role="ClientDetails" Type="Self.ClientDetails" Multiplicity="1" />
+          <End Role="ClientList" Type="Self.ClientList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ClientDetails">
+              <PropertyRef Name="Client" />
+            </Principal>
+            <Dependent Role="ClientList">
+              <PropertyRef Name="Client" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_forecast_list_Client">
+          <End Role="ClientDetails" Type="Self.ClientDetails" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="forecast_list" Type="Self.forecast_list" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ClientDetails">
+              <PropertyRef Name="Client" />
+            </Principal>
+            <Dependent Role="forecast_list">
+              <PropertyRef Name="CNEE_Name" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_forecast_list_POD">
+          <End Role="forecast_portCode" Type="Self.forecast_portCode" Multiplicity="1" />
+          <End Role="forecast_list" Type="Self.forecast_list" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="forecast_portCode">
+              <PropertyRef Name="Port_Code" />
+            </Principal>
+            <Dependent Role="forecast_list">
+              <PropertyRef Name="POD" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_forecast_list_POL">
+          <End Role="forecast_portCode" Type="Self.forecast_portCode" Multiplicity="1" />
+          <End Role="forecast_list" Type="Self.forecast_list" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="forecast_portCode">
+              <PropertyRef Name="Port_Code" />
+            </Principal>
+            <Dependent Role="forecast_list">
+              <PropertyRef Name="POL" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_forecast_list_SCAC">
+          <End Role="forecast_carrierCode" Type="Self.forecast_carrierCode" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="forecast_list" Type="Self.forecast_list" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="forecast_carrierCode">
+              <PropertyRef Name="SCAC" />
+            </Principal>
+            <Dependent Role="forecast_list">
+              <PropertyRef Name="Carrier_SCAC" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ForecastModelStoreContainer">
+          <EntitySet Name="BookMethod" EntityType="Self.BookMethod" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BrokerList" EntityType="Self.BrokerList" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CarrierAgentList" EntityType="Self.CarrierAgentList" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ClientDetails" EntityType="Self.ClientDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ClientList" EntityType="Self.ClientList" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="COList" EntityType="Self.COList" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="forecast_carrierCode" EntityType="Self.forecast_carrierCode" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="forecast_list" EntityType="Self.forecast_list" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="forecast_portCode" EntityType="Self.forecast_portCode" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MLOGEntityList" EntityType="Self.MLOGEntityList" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SHList" EntityType="Self.SHList" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WHSList" EntityType="Self.WHSList" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_BookMethod_SCAC" Association="Self.FK_BookMethod_SCAC">
+            <End Role="forecast_carrierCode" EntitySet="forecast_carrierCode" />
+            <End Role="BookMethod" EntitySet="BookMethod" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClientList_Client" Association="Self.FK_ClientList_Client">
+            <End Role="ClientDetails" EntitySet="ClientDetails" />
+            <End Role="ClientList" EntitySet="ClientList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_forecast_list_Client" Association="Self.FK_forecast_list_Client">
+            <End Role="ClientDetails" EntitySet="ClientDetails" />
+            <End Role="forecast_list" EntitySet="forecast_list" />
+          </AssociationSet>
+          <AssociationSet Name="FK_forecast_list_POD" Association="Self.FK_forecast_list_POD">
+            <End Role="forecast_portCode" EntitySet="forecast_portCode" />
+            <End Role="forecast_list" EntitySet="forecast_list" />
+          </AssociationSet>
+          <AssociationSet Name="FK_forecast_list_POL" Association="Self.FK_forecast_list_POL">
+            <End Role="forecast_portCode" EntitySet="forecast_portCode" />
+            <End Role="forecast_list" EntitySet="forecast_list" />
+          </AssociationSet>
+          <AssociationSet Name="FK_forecast_list_SCAC" Association="Self.FK_forecast_list_SCAC">
+            <End Role="forecast_carrierCode" EntitySet="forecast_carrierCode" />
+            <End Role="forecast_list" EntitySet="forecast_list" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ForecastModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="BookMethod">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Prefix" Type="String" MaxLength="3" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SCAC" Type="String" MaxLength="4" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BookingMethod" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="OPSPIC" Type="String" MaxLength="6" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PreAsign" Type="String" MaxLength="1" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="OPSName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="OPSTel" Type="String" MaxLength="4" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="forecast_carrierCode" Relationship="Self.FK_BookMethod_SCAC" FromRole="BookMethod" ToRole="forecast_carrierCode" />
+        </EntityType>
+        <EntityType Name="ClientDetail">
+          <Key>
+            <PropertyRef Name="Client" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Client" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TLUID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Team" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Dept" Type="String" MaxLength="6" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="ClientLists" Relationship="Self.FK_ClientList_Client" FromRole="ClientDetails" ToRole="ClientList" />
+          <NavigationProperty Name="forecast_list" Relationship="Self.FK_forecast_list_Client" FromRole="ClientDetails" ToRole="forecast_list" />
+        </EntityType>
+        <EntityType Name="ClientList">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CNEEBECode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Client" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="ClientDetail" Relationship="Self.FK_ClientList_Client" FromRole="ClientList" ToRole="ClientDetails" />
+        </EntityType>
+        <EntityType Name="forecast_carrierCode">
+          <Key>
+            <PropertyRef Name="SCAC" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SCAC" Type="String" MaxLength="4" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="BookMethods" Relationship="Self.FK_BookMethod_SCAC" FromRole="forecast_carrierCode" ToRole="BookMethod" />
+          <NavigationProperty Name="forecast_list" Relationship="Self.FK_forecast_list_SCAC" FromRole="forecast_carrierCode" ToRole="forecast_list" />
+        </EntityType>
+        <EntityType Name="forecast_list">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UID" Type="String" MaxLength="6" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CNEE_Name" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ETD_Week" Type="Int32" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="ETD" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Carrier_SCAC" Type="String" MaxLength="4" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="String1" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="VSL" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="VOY" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="S_C" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="POL_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="POD_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Forecast_TEU" Type="Int32" />
+          <Property Name="POD_Region" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Remarks" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Over_Book" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="CT_Feedback" Type="Int32" />
+          <Property Name="Booked_TEU" Type="Int32" />
+          <Property Name="Cancelled_TEU" Type="Int32" />
+          <Property Name="Balance_TEU" Type="Int32" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="Submit_Time" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CT_Time" Type="DateTime" Precision="3" />
+          <Property Name="CAR_Time" Type="DateTime" Precision="3" />
+          <Property Name="String2" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Dpt" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Team_Leader" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Team_Name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="POL" Type="String" MaxLength="8" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="POD" Type="String" MaxLength="8" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="OP_Type" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="ClientDetail" Relationship="Self.FK_forecast_list_Client" FromRole="forecast_list" ToRole="ClientDetails" />
+          <NavigationProperty Name="forecast_carrierCode" Relationship="Self.FK_forecast_list_SCAC" FromRole="forecast_list" ToRole="forecast_carrierCode" />
+          <NavigationProperty Name="forecast_portCode_pod" Relationship="Self.FK_forecast_list_POD" FromRole="forecast_list" ToRole="forecast_portCode" />
+          <NavigationProperty Name="forecast_portCode_pol" Relationship="Self.FK_forecast_list_POL" FromRole="forecast_list" ToRole="forecast_portCode" />
+        </EntityType>
+        <EntityType Name="forecast_portCode">
+          <Key>
+            <PropertyRef Name="Port_Code" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Port_Code" Type="String" MaxLength="8" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Port_Name" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="Port_OBCut" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+          <Property Name="Port_Region" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="forecast_list_pod" Relationship="Self.FK_forecast_list_POD" FromRole="forecast_portCode" ToRole="forecast_list" />
+          <NavigationProperty Name="forecast_list_pol" Relationship="Self.FK_forecast_list_POL" FromRole="forecast_portCode" ToRole="forecast_list" />
+        </EntityType>
+        <Association Name="FK_BookMethod_SCAC">
+          <End Role="forecast_carrierCode" Type="Self.forecast_carrierCode" Multiplicity="1" />
+          <End Role="BookMethod" Type="Self.BookMethod" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="forecast_carrierCode">
+              <PropertyRef Name="SCAC" />
+            </Principal>
+            <Dependent Role="BookMethod">
+              <PropertyRef Name="SCAC" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClientList_Client">
+          <End Role="ClientDetails" Type="Self.ClientDetail" Multiplicity="1" />
+          <End Role="ClientList" Type="Self.ClientList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ClientDetails">
+              <PropertyRef Name="Client" />
+            </Principal>
+            <Dependent Role="ClientList">
+              <PropertyRef Name="Client" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_forecast_list_Client">
+          <End Role="ClientDetails" Type="Self.ClientDetail" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="forecast_list" Type="Self.forecast_list" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ClientDetails">
+              <PropertyRef Name="Client" />
+            </Principal>
+            <Dependent Role="forecast_list">
+              <PropertyRef Name="CNEE_Name" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_forecast_list_SCAC">
+          <End Role="forecast_carrierCode" Type="Self.forecast_carrierCode" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="forecast_list" Type="Self.forecast_list" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="forecast_carrierCode">
+              <PropertyRef Name="SCAC" />
+            </Principal>
+            <Dependent Role="forecast_list">
+              <PropertyRef Name="Carrier_SCAC" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_forecast_list_POD">
+          <End Role="forecast_portCode" Type="Self.forecast_portCode" Multiplicity="1" />
+          <End Role="forecast_list" Type="Self.forecast_list" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="forecast_portCode">
+              <PropertyRef Name="Port_Code" />
+            </Principal>
+            <Dependent Role="forecast_list">
+              <PropertyRef Name="POD" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_forecast_list_POL">
+          <End Role="forecast_portCode" Type="Self.forecast_portCode" Multiplicity="1" />
+          <End Role="forecast_list" Type="Self.forecast_list" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="forecast_portCode">
+              <PropertyRef Name="Port_Code" />
+            </Principal>
+            <Dependent Role="forecast_list">
+              <PropertyRef Name="POL" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ForecastEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BookMethods" EntityType="Self.BookMethod" />
+          <EntitySet Name="ClientDetails" EntityType="Self.ClientDetail" />
+          <EntitySet Name="ClientLists" EntityType="Self.ClientList" />
+          <EntitySet Name="forecast_carrierCode" EntityType="Self.forecast_carrierCode" />
+          <EntitySet Name="forecast_list" EntityType="Self.forecast_list" />
+          <EntitySet Name="forecast_portCode" EntityType="Self.forecast_portCode" />
+          <AssociationSet Name="FK_BookMethod_SCAC" Association="Self.FK_BookMethod_SCAC">
+            <End Role="forecast_carrierCode" EntitySet="forecast_carrierCode" />
+            <End Role="BookMethod" EntitySet="BookMethods" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClientList_Client" Association="Self.FK_ClientList_Client">
+            <End Role="ClientDetails" EntitySet="ClientDetails" />
+            <End Role="ClientList" EntitySet="ClientLists" />
+          </AssociationSet>
+          <AssociationSet Name="FK_forecast_list_Client" Association="Self.FK_forecast_list_Client">
+            <End Role="ClientDetails" EntitySet="ClientDetails" />
+            <End Role="forecast_list" EntitySet="forecast_list" />
+          </AssociationSet>
+          <AssociationSet Name="FK_forecast_list_SCAC" Association="Self.FK_forecast_list_SCAC">
+            <End Role="forecast_carrierCode" EntitySet="forecast_carrierCode" />
+            <End Role="forecast_list" EntitySet="forecast_list" />
+          </AssociationSet>
+          <AssociationSet Name="FK_forecast_list_POD" Association="Self.FK_forecast_list_POD">
+            <End Role="forecast_portCode" EntitySet="forecast_portCode" />
+            <End Role="forecast_list" EntitySet="forecast_list" />
+          </AssociationSet>
+          <AssociationSet Name="FK_forecast_list_POL" Association="Self.FK_forecast_list_POL">
+            <End Role="forecast_portCode" EntitySet="forecast_portCode" />
+            <End Role="forecast_list" EntitySet="forecast_list" />
+          </AssociationSet>
+          <EntitySet Name="BrokerLists" EntityType="ForecastModel.BrokerList" />
+          <EntitySet Name="CarrierAgentLists" EntityType="ForecastModel.CarrierAgentList" />
+          <EntitySet Name="COLists" EntityType="ForecastModel.COList" />
+          <EntitySet Name="MLOGEntityLists" EntityType="ForecastModel.MLOGEntityList" />
+          <EntitySet Name="SHLists" EntityType="ForecastModel.SHList" />
+          <EntitySet Name="WHSLists" EntityType="ForecastModel.WHSList" />
+        </EntityContainer>
+        <EntityType Name="BrokerList">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BrokerCode" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Prefix" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="BrokerName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="CarrierAgentList">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CarrierAgentCode" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="Prefix" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="CarrierAgentName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="COList">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CNEECode" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="CNEEName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="CNEEAdd" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="MLOGEntityList">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MLOGEntity" Type="String" MaxLength="7" FixedLength="false" Unicode="true" />
+          <Property Name="Prefix" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="POLRegion" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="SHList">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SHCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="SHName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="SHAdd" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="WHSList">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="WarehouseCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Prefix" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="WarehouseName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ForecastModelStoreContainer" CdmEntityContainer="ForecastEntities">
+          <EntitySetMapping Name="BookMethods">
+            <EntityTypeMapping TypeName="ForecastModel.BookMethod">
+              <MappingFragment StoreEntitySet="BookMethod">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Prefix" ColumnName="Prefix" />
+                <ScalarProperty Name="SCAC" ColumnName="SCAC" />
+                <ScalarProperty Name="BookingMethod" ColumnName="BookingMethod" />
+                <ScalarProperty Name="OPSPIC" ColumnName="OPSPIC" />
+                <ScalarProperty Name="PreAsign" ColumnName="PreAsign" />
+                <ScalarProperty Name="OPSName" ColumnName="OPSName" />
+                <ScalarProperty Name="OPSTel" ColumnName="OPSTel" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ClientDetails">
+            <EntityTypeMapping TypeName="ForecastModel.ClientDetail">
+              <MappingFragment StoreEntitySet="ClientDetails">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Client" ColumnName="Client" />
+                <ScalarProperty Name="TLUID" ColumnName="TLUID" />
+                <ScalarProperty Name="Team" ColumnName="Team" />
+                <ScalarProperty Name="Dept" ColumnName="Dept" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ClientLists">
+            <EntityTypeMapping TypeName="ForecastModel.ClientList">
+              <MappingFragment StoreEntitySet="ClientList">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="CNEEBECode" ColumnName="CNEEBECode" />
+                <ScalarProperty Name="Client" ColumnName="Client" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="forecast_carrierCode">
+            <EntityTypeMapping TypeName="ForecastModel.forecast_carrierCode">
+              <MappingFragment StoreEntitySet="forecast_carrierCode">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="SCAC" ColumnName="SCAC" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="forecast_list">
+            <EntityTypeMapping TypeName="ForecastModel.forecast_list">
+              <MappingFragment StoreEntitySet="forecast_list">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="UID" ColumnName="UID" />
+                <ScalarProperty Name="CNEE_Name" ColumnName="CNEE_Name" />
+                <ScalarProperty Name="ETD_Week" ColumnName="ETD_Week" />
+                <ScalarProperty Name="ETD" ColumnName="ETD" />
+                <ScalarProperty Name="Carrier_SCAC" ColumnName="Carrier_SCAC" />
+                <ScalarProperty Name="String1" ColumnName="String1" />
+                <ScalarProperty Name="VSL" ColumnName="VSL" />
+                <ScalarProperty Name="VOY" ColumnName="VOY" />
+                <ScalarProperty Name="S_C" ColumnName="S_C" />
+                <ScalarProperty Name="POL_Name" ColumnName="POL_Name" />
+                <ScalarProperty Name="POD_Name" ColumnName="POD_Name" />
+                <ScalarProperty Name="Forecast_TEU" ColumnName="Forecast_TEU" />
+                <ScalarProperty Name="POD_Region" ColumnName="POD_Region" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="Over_Book" ColumnName="Over_Book" />
+                <ScalarProperty Name="CT_Feedback" ColumnName="CT_Feedback" />
+                <ScalarProperty Name="Booked_TEU" ColumnName="Booked_TEU" />
+                <ScalarProperty Name="Cancelled_TEU" ColumnName="Cancelled_TEU" />
+                <ScalarProperty Name="Balance_TEU" ColumnName="Balance_TEU" />
+                <ScalarProperty Name="Submit_Time" ColumnName="Submit_Time" />
+                <ScalarProperty Name="CT_Time" ColumnName="CT_Time" />
+                <ScalarProperty Name="CAR_Time" ColumnName="CAR_Time" />
+                <ScalarProperty Name="String2" ColumnName="String2" />
+                <ScalarProperty Name="Dpt" ColumnName="Dpt" />
+                <ScalarProperty Name="Team_Leader" ColumnName="Team_Leader" />
+                <ScalarProperty Name="Team_Name" ColumnName="Team_Name" />
+                <ScalarProperty Name="POL" ColumnName="POL" />
+                <ScalarProperty Name="POD" ColumnName="POD" />
+                <ScalarProperty Name="OP_Type" ColumnName="OP_Type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="forecast_portCode">
+            <EntityTypeMapping TypeName="ForecastModel.forecast_portCode">
+              <MappingFragment StoreEntitySet="forecast_portCode">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Port_Code" ColumnName="Port_Code" />
+                <ScalarProperty Name="Port_Name" ColumnName="Port_Name" />
+                <ScalarProperty Name="Port_OBCut" ColumnName="Port_OBCut" />
+                <ScalarProperty Name="Port_Region" ColumnName="Port_Region" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BrokerLists">
+            <EntityTypeMapping TypeName="ForecastModel.BrokerList">
+              <MappingFragment StoreEntitySet="BrokerList">
+                <ScalarProperty Name="BrokerName" ColumnName="BrokerName" />
+                <ScalarProperty Name="Prefix" ColumnName="Prefix" />
+                <ScalarProperty Name="BrokerCode" ColumnName="BrokerCode" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CarrierAgentLists">
+            <EntityTypeMapping TypeName="ForecastModel.CarrierAgentList">
+              <MappingFragment StoreEntitySet="CarrierAgentList">
+                <ScalarProperty Name="CarrierAgentName" ColumnName="BrokerAgentName" />
+                <ScalarProperty Name="Prefix" ColumnName="Prefix" />
+                <ScalarProperty Name="CarrierAgentCode" ColumnName="BrokerAgentCode" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="COLists">
+            <EntityTypeMapping TypeName="ForecastModel.COList">
+              <MappingFragment StoreEntitySet="COList">
+                <ScalarProperty Name="CNEEAdd" ColumnName="CNEEAdd" />
+                <ScalarProperty Name="CNEEName" ColumnName="CNEEName" />
+                <ScalarProperty Name="CNEECode" ColumnName="CNEECode" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MLOGEntityLists">
+            <EntityTypeMapping TypeName="ForecastModel.MLOGEntityList">
+              <MappingFragment StoreEntitySet="MLOGEntityList">
+                <ScalarProperty Name="POLRegion" ColumnName="POLRegion" />
+                <ScalarProperty Name="Prefix" ColumnName="Prefix" />
+                <ScalarProperty Name="MLOGEntity" ColumnName="MLOGEntity" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SHLists">
+            <EntityTypeMapping TypeName="ForecastModel.SHList">
+              <MappingFragment StoreEntitySet="SHList">
+                <ScalarProperty Name="SHAdd" ColumnName="SHAdd" />
+                <ScalarProperty Name="SHName" ColumnName="SHName" />
+                <ScalarProperty Name="SHCode" ColumnName="SHCode" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WHSLists">
+            <EntityTypeMapping TypeName="ForecastModel.WHSList">
+              <MappingFragment StoreEntitySet="WHSList">
+                <ScalarProperty Name="WarehouseName" ColumnName="WarehouseName" />
+                <ScalarProperty Name="Prefix" ColumnName="Prefix" />
+                <ScalarProperty Name="WarehouseCode" ColumnName="WarehouseCode" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

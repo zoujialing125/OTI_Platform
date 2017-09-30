@@ -1,0 +1,111 @@
+﻿@using System.Web.Optimization
+<!DOCTYPE html>
+<!--
+This is a starter template page. Use this page to start your new project from
+scratch. This page gets rid of all links and provides the needed markup only.
+-->
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="shortcut icon" href="~/favicon.ico">
+    <title>
+        @if (!string.IsNullOrWhiteSpace(ViewBag.Title))
+        {
+            @ViewBag.Title@: -
+        }
+        OTI Booking Platform
+    </title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/Theme-Sidebar/css")
+    @*<link rel="stylesheet" href="https://adminlte.io/themes/AdminLTE/dist/css/AdminLTE.min.css">*@
+    <!-- Google Font -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css" />
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<!--
+BODY TAG OPTIONS:
+=================
+Apply one or more of the following classes to get the
+desired effect
+|---------------------------------------------------------|
+| SKINS         | skin-blue                               |
+|               | skin-black                              |
+|               | skin-purple                             |
+|               | skin-yellow                             |
+|               | skin-red                                |
+|               | skin-green                              |
+|---------------------------------------------------------|
+|LAYOUT OPTIONS | fixed                                   |
+|               | layout-boxed                            |
+|               | layout-top-nav                          |
+|               | sidebar-collapse                        |
+|               | sidebar-mini                            |
+|---------------------------------------------------------|
+-->
+<body class="hold-transition skin-green-light sidebar-mini">
+    <div class="wrapper">
+        <!-- Main Header -->
+        @Html.Partial("_Header")
+        <!-- Left side column. contains the logo and sidebar -->
+        @Html.Partial("_Sidebar")
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <h1>
+                    @ViewBag.PageHeader
+                    <small>@ViewBag.PageDescription</small>
+                </h1>
+                @*<ol class="breadcrumb">
+                    <li><a href="Index"><i class="fa fa-home"></i> Home</a></li>
+                    <li class="active">@ViewBag.PageHeader</li>
+                </ol>*@
+            </section>
+            <!-- Main content -->
+            <section class="content container-fluid">
+                <!--------------------------
+                  | Your Page Content Here |
+                  -------------------------->
+                @RenderBody()
+            </section>
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+        <!-- Main Footer -->
+        <footer class="main-footer">
+            <!-- To the right -->
+            <div class="pull-right hidden-xs">
+                Site Maintained by <a href="https://eur.delve.office.com/?u=e07c5a55-5f59-44c0-965b-5da8e1623378&v=work">
+                    Johney Zou
+                </a>
+            </div>
+            <!-- Default to the left -->
+            <strong>Copyright &copy; @DateTime.Now.Year 
+                <a href="https://www.yammer.com/maerskgroup.com/#/threads/inGroup?type=in_group&feedId=12262451&view=all">
+                    Damco GCA CI Automation Team
+                </a>.</strong> All rights reserved.
+        </footer>
+        <!-- Control Sidebar -->
+        @Html.Partial("_ControlSidebar")
+        <!-- /.control-sidebar -->
+        <!-- Add the sidebar's background. This div must be placed
+        immediately after the control sidebar -->
+        <div class="control-sidebar-bg"></div>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/Theme-Sidebar/js")
+    @Scripts.Render("~/DataTables/js")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

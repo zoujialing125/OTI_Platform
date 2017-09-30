@@ -1,0 +1,250 @@
+﻿@model OTI_Booking_Platform.Models.forecast_list
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>forecast_list</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.UID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ETD_Week)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ETD_Week)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ETD)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ETD)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.String1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.String1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VSL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VSL)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VOY)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VOY)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.S_C)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.S_C)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.POL_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.POL_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.POD_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.POD_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Forecast_TEU)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Forecast_TEU)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.POD_Region)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.POD_Region)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Remarks)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Remarks)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Over_Book)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Over_Book)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CT_Feedback)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CT_Feedback)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Booked_TEU)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Booked_TEU)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cancelled_TEU)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cancelled_TEU)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Balance_TEU)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Balance_TEU)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Submit_Time)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Submit_Time)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CT_Time)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CT_Time)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CAR_Time)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CAR_Time)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.String2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.String2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Dpt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dpt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Team_Leader)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Team_Leader)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Team_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Team_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OP_Type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OP_Type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ClientDetail.TLUID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ClientDetail.TLUID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.forecast_carrierCode.SCAC)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.forecast_carrierCode.SCAC)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.forecast_portCode_pod.Port_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.forecast_portCode_pod.Port_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.forecast_portCode_pol.Port_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.forecast_portCode_pol.Port_Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
