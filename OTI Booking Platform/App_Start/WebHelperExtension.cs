@@ -24,7 +24,7 @@ namespace WebHelpers.Mvc5
         {
             if (url.RequestContext.RouteData.Values["controller"].ToString() == controller &&
                 url.RequestContext.RouteData.Values["action"].ToString() == action &&
-                url.RequestContext.RouteData.Values["id"].ToString() == id)
+                (url.RequestContext.RouteData.Values["id"]??0).ToString() == id)
             {
                 return "active";
             }

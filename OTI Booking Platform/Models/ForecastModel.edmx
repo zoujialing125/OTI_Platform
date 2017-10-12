@@ -32,9 +32,9 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="BrokerAgentCode" Type="nvarchar" MaxLength="5" Nullable="false" />
           <Property Name="Prefix" Type="nvarchar" MaxLength="3" Nullable="false" />
-          <Property Name="BrokerAgentName" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="CarrierAgentCode" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="CarrierAgentName" Type="nvarchar" MaxLength="200" Nullable="false" />
         </EntityType>
         <EntityType Name="ClientDetails">
           <Key>
@@ -463,11 +463,11 @@
             <End Role="forecast_list" EntitySet="forecast_list" />
           </AssociationSet>
           <EntitySet Name="BrokerLists" EntityType="ForecastModel.BrokerList" />
-          <EntitySet Name="CarrierAgentLists" EntityType="ForecastModel.CarrierAgentList" />
           <EntitySet Name="COLists" EntityType="ForecastModel.COList" />
           <EntitySet Name="MLOGEntityLists" EntityType="ForecastModel.MLOGEntityList" />
           <EntitySet Name="SHLists" EntityType="ForecastModel.SHList" />
           <EntitySet Name="WHSLists" EntityType="ForecastModel.WHSList" />
+          <EntitySet Name="CarrierAgentLists" EntityType="ForecastModel.CarrierAgentList" />
         </EntityContainer>
         <EntityType Name="BrokerList">
           <Key>
@@ -477,15 +477,6 @@
           <Property Name="BrokerCode" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="Prefix" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
           <Property Name="BrokerName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="CarrierAgentList">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CarrierAgentCode" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
-          <Property Name="Prefix" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
-          <Property Name="CarrierAgentName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="COList">
           <Key>
@@ -522,6 +513,15 @@
           <Property Name="WarehouseCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="Prefix" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
           <Property Name="WarehouseName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="CarrierAgentList">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Prefix" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="CarrierAgentCode" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="CarrierAgentName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -628,16 +628,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="CarrierAgentLists">
-            <EntityTypeMapping TypeName="ForecastModel.CarrierAgentList">
-              <MappingFragment StoreEntitySet="CarrierAgentList">
-                <ScalarProperty Name="CarrierAgentName" ColumnName="BrokerAgentName" />
-                <ScalarProperty Name="Prefix" ColumnName="Prefix" />
-                <ScalarProperty Name="CarrierAgentCode" ColumnName="BrokerAgentCode" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="COLists">
             <EntityTypeMapping TypeName="ForecastModel.COList">
               <MappingFragment StoreEntitySet="COList">
@@ -674,6 +664,16 @@
                 <ScalarProperty Name="WarehouseName" ColumnName="WarehouseName" />
                 <ScalarProperty Name="Prefix" ColumnName="Prefix" />
                 <ScalarProperty Name="WarehouseCode" ColumnName="WarehouseCode" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CarrierAgentLists">
+            <EntityTypeMapping TypeName="ForecastModel.CarrierAgentList">
+              <MappingFragment StoreEntitySet="CarrierAgentList">
+                <ScalarProperty Name="CarrierAgentName" ColumnName="CarrierAgentName" />
+                <ScalarProperty Name="CarrierAgentCode" ColumnName="CarrierAgentCode" />
+                <ScalarProperty Name="Prefix" ColumnName="Prefix" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

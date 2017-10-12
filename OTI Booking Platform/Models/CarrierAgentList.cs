@@ -15,8 +15,8 @@ namespace OTI_Booking_Platform.Models
     public partial class CarrierAgentList
     {
         public int id { get; set; }
-        public string CarrierAgentCode { get; set; }
         public string Prefix { get; set; }
+        public string CarrierAgentCode { get; set; }
         public string CarrierAgentName { get; set; }
     }
 }

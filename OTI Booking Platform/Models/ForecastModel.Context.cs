@@ -18,6 +18,7 @@ namespace OTI_Booking_Platform.Models
         public ForecastEntities()
             : base("name=ForecastEntities")
         {
+            //this.Configuration.ProxyCreationEnabled = false;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -32,10 +33,10 @@ namespace OTI_Booking_Platform.Models
         public virtual DbSet<forecast_list> forecast_list { get; set; }
         public virtual DbSet<forecast_portCode> forecast_portCode { get; set; }
         public virtual DbSet<BrokerList> BrokerLists { get; set; }
-        public virtual DbSet<CarrierAgentList> CarrierAgentLists { get; set; }
         public virtual DbSet<COList> COLists { get; set; }
         public virtual DbSet<MLOGEntityList> MLOGEntityLists { get; set; }
         public virtual DbSet<SHList> SHLists { get; set; }
         public virtual DbSet<WHSList> WHSLists { get; set; }
+        public virtual DbSet<CarrierAgentList> CarrierAgentLists { get; set; }
     }
 }

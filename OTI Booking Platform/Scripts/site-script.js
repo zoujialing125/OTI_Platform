@@ -352,7 +352,8 @@ $(function () {
     $('#tb-forecast').DataTable({
         scrollY: 600,
         scrollX: true,
-        scrollCollapse: true
+        scrollCollapse: true,
+        select: false
     });
 
     /**
@@ -371,9 +372,9 @@ $(function () {
         }
     });
 
-    //$('#button').click(function () {
-    //    table.row('.selected').remove().draw(false);
-    //});
+    $('#button').click(function () {
+        table.row('.selected').remove().draw(false);
+    });
 
 
     //Control sidebar search box
@@ -426,5 +427,21 @@ $(function () {
         });
     });
 
+    //$.ajax({
+    //    "url": '/AdminOptions/ReferenceTables/tab-clientList',
+    //    "success": function (json) {
+    //        var tableHeaders;
+    //        $.each(json.Headers, function (i, val) {
+    //            tableHeaders += "<th>" + val + "</th>";
+    //        });
+
+    //        $("#tableDiv").empty();
+    //        $("#tableDiv").append('<table id="displayTable" class="display" cellspacing="0" width="100%"><thead><tr>' + tableHeaders + '</tr></thead></table>');
+    //        //$("#tableDiv").find("table thead tr").append(tableHeaders);  
+
+    //        $('#displayTable').dataTable(json);
+    //    },
+    //    "dataType": "json"
+    //});
 });
 

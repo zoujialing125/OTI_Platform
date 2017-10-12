@@ -25,7 +25,8 @@ namespace OTI_Booking_Platform
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/DataTables/css/dataTables.bootstrap.min.css"));
+                      "~/Content/DataTables/css/dataTables.bootstrap.min.css",
+                      "~/Content/DataTables/css/select.bootstrap.min.css"));
 
             bundles.Add(new StyleBundle("~/Theme-Sidebar/css").Include(
                       "~/Theme-Sidebar/css/AdminLTE.min.css",
@@ -39,7 +40,8 @@ namespace OTI_Booking_Platform
 
             bundles.Add(new ScriptBundle("~/DataTables/js").Include(
                       "~/Scripts/DataTables/jquery.dataTables.min.js",
-                      "~/Scripts/DataTables/dataTables.bootstrap.min.js"));
+                      "~/Scripts/DataTables/dataTables.bootstrap.min.js",
+                       "~/Scripts/DataTables/dataTables.select.min.js"));
         }
     }
 }

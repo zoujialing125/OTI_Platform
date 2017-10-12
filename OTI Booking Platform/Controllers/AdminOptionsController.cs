@@ -1,9 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using OTI_Booking_Platform.Models;
+using System.Linq.Dynamic;
+using System.Data.Entity;
+using System.Threading.Tasks;
+using System.Collections.Generic;
+using System.Text;
 
 namespace OTI_Booking_Platform.Controllers
 {
@@ -25,51 +28,155 @@ namespace OTI_Booking_Platform.Controllers
             "tab-MlogList"
         };
 
+        private JsonResult JsData(Type ModalType, DbSet EntityName)
+        {
+            var TableHeaders = GetHeaders(ModalType);
+            var selector = "new (" + String.Join(", ", TableHeaders) + ")";
+            var TableData = EntityName.Select(selector).OrderBy("id");
+            return new JsonResult()
+            {
+                ContentEncoding = Encoding.Default,
+                ContentType = "application/json",
+                Data = new { data = TableData },
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet,
+                MaxJsonLength = int.MaxValue
+            };
+        }
+
+        private List<string> GetHeaders(Type ModalType)
+        {
+            return ModalType.GetProperties().Where(p => 
+                                                    p.PropertyType == typeof(int) || 
+                                                    p.PropertyType == typeof(string))
+                                            .Select(p => p.Name).ToList();
+        }
+
         // GET: ReferenceTables
         public ActionResult ReferenceTables(string id)
         {
             id = id == null ? "" : id;
+
             switch (id)
             {
                 case "tab-clientDetails":
-                    ViewBag[id] = db.ClientDetails.ToList();
+                    ViewBag.Headers = GetHeaders(typeof(ClientDetail));
+                    ViewBag.TableName = "Client Details";
                     break;
                 case "tab-clientList":
-                    ViewData[id] = db.ClientLists.ToList();
+                    ViewBag.Headers = GetHeaders(typeof(ClientList));
+                    ViewBag.TableName = "Client List";
                     break;
                 case "tab-COList":
-                    ViewData[id] = db.COLists.ToList();
+                    ViewBag.Headers = GetHeaders(typeof(COList));
+                    ViewBag.TableName = "CO List";
                     break;
                 case "tab-SHList":
-                    ViewData[id] = db.SHLists.ToList();
+                    ViewBag.Headers = GetHeaders(typeof(SHList));
+                    ViewBag.TableName = "SH List";
                     break;
                 case "tab-WHSList":
-                    ViewData[id] = db.WHSLists.ToList();
+                    ViewBag.Headers = GetHeaders(typeof(WHSList));
+                    ViewBag.TableName = "WHS List";
                     break;
                 case "tab-bookMethod":
-                    ViewData[id] = db.BookMethods.ToList();
+                    ViewBag.Headers = GetHeaders(typeof(BookMethod));
+                    ViewBag.TableName = "Booking Method";
                     break;
                 case "tab-brokerList":
-                    ViewData[id] = db.BrokerLists.ToList();
+                    ViewBag.Headers = GetHeaders(typeof(BrokerList));
+                    ViewBag.TableName = "Broker List";
                     break;
                 case "tab-carrierCodeList":
-                    ViewData[id] = db.forecast_carrierCode.ToList();
+                    ViewBag.Headers = GetHeaders(typeof(forecast_carrierCode));
+                    ViewBag.TableName = "Carrier Code List";
                     break;
                 case "tab-carrierAgentList":
-                    ViewData[id] = db.CarrierAgentLists.ToList();
+                    ViewBag.Headers = GetHeaders(typeof(CarrierAgentList));
+                    ViewBag.TableName = "Carrier Agent List";
                     break;
                 case "tab-portCodeList":
-                    ViewData[id] = db.forecast_portCode.ToList();
+                    ViewBag.Headers = GetHeaders(typeof(forecast_portCode));
+                    ViewBag.TableName = "Port Code List";
                     break;
                 case "tab-MlogList":
-                    ViewData[id] = db.MLOGEntityLists.ToList();
+                    ViewBag.Headers = GetHeaders(typeof(MLOGEntityList));
+                    ViewBag.TableName = "Mlog List";
                     break;
+                case "tab-clientDetailsData":
+                    return JsData(typeof(ClientDetail), db.ClientDetails);
+                case "tab-clientListData":
+                    return JsData(typeof(ClientList), db.ClientLists);
+                case "tab-COListData":
+                    return JsData(typeof(COList), db.COLists);
+                case "tab-SHListData":
+                    return JsData(typeof(SHList), db.SHLists);
+                case "tab-WHSListData":
+                    return JsData(typeof(WHSList), db.WHSLists);
+                case "tab-bookMethodData":
+                    return JsData(typeof(BookMethod), db.BookMethods);
+                case "tab-brokerListData":
+                    return JsData(typeof(BrokerList), db.BrokerLists);
+                case "tab-carrierCodeListData":
+                    return JsData(typeof(forecast_carrierCode), db.forecast_carrierCode);
+                case "tab-carrierAgentListData":
+                    return JsData(typeof(CarrierAgentList), db.CarrierAgentLists);
+                case "tab-portCodeListData":
+                    return JsData(typeof(forecast_portCode), db.forecast_portCode);
+                case "tab-MlogListData":
+                    return JsData(typeof(MLOGEntityList), db.MLOGEntityLists);
                 default:
-                    ViewData[id] = db.ClientDetails.ToList();
+                    ViewBag.Headers = GetHeaders(typeof(ClientDetail));
                     break;
             }
 
-            return View("ReferenceTables");
+            return View();
+        }
+
+        public ActionResult ReferenceTablesData(string id)
+        {
+            id = id == null ? "" : id;
+
+            switch (id)
+            {
+                case "tab-clientDetails":
+                    ViewBag.TableInfo = JsData(typeof(ClientList), db.ClientLists);
+                    break;
+                case "tab-clientList":
+                    ViewBag.TableInfo = JsData(typeof(ClientList), db.ClientLists);
+                    break;
+                case "tab-COList":
+                    ViewBag.TableInfo = JsData(typeof(COList), db.COLists);
+                    break;
+                case "tab-SHList":
+                    ViewBag.TableInfo = JsData(typeof(SHList), db.SHLists);
+                    break;
+                case "tab-WHSList":
+                    ViewBag.TableInfo = JsData(typeof(WHSList), db.WHSLists);
+                    break;
+                case "tab-bookMethod":
+                    ViewBag.TableInfo = JsData(typeof(BookMethod), db.BookMethods);
+                    break;
+                case "tab-brokerList":
+                    ViewBag.TableInfo = JsData(typeof(BrokerList), db.BrokerLists);
+                    break;
+                case "tab-carrierCodeList":
+                    ViewBag.TableInfo = JsData(typeof(forecast_carrierCode), db.forecast_carrierCode);
+                    break;
+                case "tab-carrierAgentList":
+                    ViewBag.TableInfo = JsData(typeof(CarrierAgentList), db.CarrierAgentLists);
+                    break;
+                case "tab-portCodeList":
+                    ViewBag.TableInfo = JsData(typeof(forecast_portCode), db.forecast_portCode);
+                    break;
+                case "tab-MlogList":
+                    ViewBag.TableInfo = JsData(typeof(MLOGEntityList), db.MLOGEntityLists);
+                    break;
+                default:
+                    ViewBag.TableInfo = JsData(typeof(ClientDetail), db.ClientDetails);
+                    break;
+            }
+
+            return View();
         }
 
         // GET: ReferenceTables/Details/5

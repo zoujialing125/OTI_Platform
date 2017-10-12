@@ -91,6 +91,9 @@
       <HintPath>..\packages\System.Diagnostics.DiagnosticSource.4.4.1\lib\net45\System.Diagnostics.DiagnosticSource.dll</HintPath>
     </Reference>
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Linq.Dynamic, Version=1.0.6132.35681, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Linq.Dynamic.1.0.7\lib\net40\System.Linq.Dynamic.dll</HintPath>
+    </Reference>
     <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
@@ -184,6 +187,7 @@
     <Compile Include="Models\COList.cs">
       <DependentUpon>ForecastModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ContextExtensions.cs" />
     <Compile Include="Models\ForecastModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
