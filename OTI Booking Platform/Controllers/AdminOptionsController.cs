@@ -132,52 +132,52 @@ namespace OTI_Booking_Platform.Controllers
             return View();
         }
 
-        public ActionResult ReferenceTablesData(string id)
-        {
-            id = id == null ? "" : id;
+        //public ActionResult ReferenceTablesData(string id)
+        //{
+        //    id = id == null ? "" : id;
 
-            switch (id)
-            {
-                case "tab-clientDetails":
-                    ViewBag.TableInfo = JsData(typeof(ClientList), db.ClientLists);
-                    break;
-                case "tab-clientList":
-                    ViewBag.TableInfo = JsData(typeof(ClientList), db.ClientLists);
-                    break;
-                case "tab-COList":
-                    ViewBag.TableInfo = JsData(typeof(COList), db.COLists);
-                    break;
-                case "tab-SHList":
-                    ViewBag.TableInfo = JsData(typeof(SHList), db.SHLists);
-                    break;
-                case "tab-WHSList":
-                    ViewBag.TableInfo = JsData(typeof(WHSList), db.WHSLists);
-                    break;
-                case "tab-bookMethod":
-                    ViewBag.TableInfo = JsData(typeof(BookMethod), db.BookMethods);
-                    break;
-                case "tab-brokerList":
-                    ViewBag.TableInfo = JsData(typeof(BrokerList), db.BrokerLists);
-                    break;
-                case "tab-carrierCodeList":
-                    ViewBag.TableInfo = JsData(typeof(forecast_carrierCode), db.forecast_carrierCode);
-                    break;
-                case "tab-carrierAgentList":
-                    ViewBag.TableInfo = JsData(typeof(CarrierAgentList), db.CarrierAgentLists);
-                    break;
-                case "tab-portCodeList":
-                    ViewBag.TableInfo = JsData(typeof(forecast_portCode), db.forecast_portCode);
-                    break;
-                case "tab-MlogList":
-                    ViewBag.TableInfo = JsData(typeof(MLOGEntityList), db.MLOGEntityLists);
-                    break;
-                default:
-                    ViewBag.TableInfo = JsData(typeof(ClientDetail), db.ClientDetails);
-                    break;
-            }
+        //    switch (id)
+        //    {
+        //        case "tab-clientDetails":
+        //            ViewBag.TableInfo = JsData(typeof(ClientList), db.ClientLists);
+        //            break;
+        //        case "tab-clientList":
+        //            ViewBag.TableInfo = JsData(typeof(ClientList), db.ClientLists);
+        //            break;
+        //        case "tab-COList":
+        //            ViewBag.TableInfo = JsData(typeof(COList), db.COLists);
+        //            break;
+        //        case "tab-SHList":
+        //            ViewBag.TableInfo = JsData(typeof(SHList), db.SHLists);
+        //            break;
+        //        case "tab-WHSList":
+        //            ViewBag.TableInfo = JsData(typeof(WHSList), db.WHSLists);
+        //            break;
+        //        case "tab-bookMethod":
+        //            ViewBag.TableInfo = JsData(typeof(BookMethod), db.BookMethods);
+        //            break;
+        //        case "tab-brokerList":
+        //            ViewBag.TableInfo = JsData(typeof(BrokerList), db.BrokerLists);
+        //            break;
+        //        case "tab-carrierCodeList":
+        //            ViewBag.TableInfo = JsData(typeof(forecast_carrierCode), db.forecast_carrierCode);
+        //            break;
+        //        case "tab-carrierAgentList":
+        //            ViewBag.TableInfo = JsData(typeof(CarrierAgentList), db.CarrierAgentLists);
+        //            break;
+        //        case "tab-portCodeList":
+        //            ViewBag.TableInfo = JsData(typeof(forecast_portCode), db.forecast_portCode);
+        //            break;
+        //        case "tab-MlogList":
+        //            ViewBag.TableInfo = JsData(typeof(MLOGEntityList), db.MLOGEntityLists);
+        //            break;
+        //        default:
+        //            ViewBag.TableInfo = JsData(typeof(ClientDetail), db.ClientDetails);
+        //            break;
+        //    }
 
-            return View();
-        }
+        //    return View();
+        //}
 
         // GET: ReferenceTables/Details/5
         public ActionResult Details(int id)

@@ -21,12 +21,15 @@ namespace OTI_Booking_Platform
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
-                      "~/Scripts/respond.js"));
+                      "~/Scripts/respond.js",
+                      "~/Scripts/Bootstrap-Toggle/bootstrap-toggle.min.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
+                      "~/Content/Site.css",
                       "~/Content/bootstrap.css",
                       "~/Content/DataTables/css/dataTables.bootstrap.min.css",
-                      "~/Content/DataTables/css/select.bootstrap.min.css"));
+                      "~/Content/DataTables/css/select.bootstrap.min.css",
+                      "~/Content/Bootstrap-Toggle/bootstrap-toggle.min.css"));
 
             bundles.Add(new StyleBundle("~/Theme-Sidebar/css").Include(
                       "~/Theme-Sidebar/css/AdminLTE.min.css",

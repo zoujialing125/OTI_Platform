@@ -4,31 +4,25 @@
     ViewBag.PageHeader = "Reference Tables";
     ViewBag.PageDescription = "Tabels for reference information";
     var Hstr = "";
+    var HstrPlant = "";
     foreach (var item in ViewBag.Headers)
     {
-        Hstr = Hstr + "{ \"data\": " + "\"" + item + "\" }, \n";
+        var x = (List<string>)ViewBag.Headers;
+        HstrPlant = "'" + string.Join("','", x) + "'";
+        Hstr += "{ \"data\": " + "\"" + item + "\" }, \n";
     }
 }
 
 
 <div class="row">
     <div class="col-xs-12">
-        <div class="box">
+        <div class="box" style="">
             <div class="box-header">
                 <h3 class="box-title">@ViewBag.TableName</h3>
                 <div class="box-tools">
-                    @*<div>@Html.ActionLink("Create New", "Create")</div>*@
-
-                    @*<div class="input-group input-group-sm" style="width: 150px;">
-                        <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
-
-                        <div class="input-group-btn">
-                            <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
-                        </div>
-                    </div>*@
                 </div>
             </div>
-            <div class="box-body table-responsive">
+            <div class="box-body" style="">
                 <table class="table table-hover table-bordered" id="tb-referenceInfo" style="width: 100%;">
                     <thead>
                         <tr>
@@ -39,6 +33,14 @@
                                 </th>
                             }
                         </tr>
+                        <tr class="collapse" id="filter-input">
+                            @foreach (var item in ViewBag.Headers)
+                            {
+                                <th>
+                                    <input type="text" class="col-search " placeholder="Search @item" style="font-weight:lighter;font-family:Sans-serif"/>
+                                </th>
+                            }
+                        </tr>
                     </thead>
                 </table>
             </div>
@@ -46,15 +48,261 @@
     </div>
 </div>
 
+<!-- Modal Detail-->
+<div id="modalDetail" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Modal Header</h4>
+            </div>
+            <div class="modal-body">
+                <div class="loader"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-success" data-dismiss="modal">Submit</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Modal Warning-->
+<div id="modalWarning" class="modal modal-danger fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Modal Header</h4>
+            </div>
+            <div class="modal-body">
+                <p>Some text in the modal.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-warning" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
 <script>
-    document.addEventListener("DOMContentLoaded", function (event) {
-        $('#tb-referenceInfo').DataTable({
-            ajax: "@Html.Raw(Request.Url + "Data")",
+    var dataHeader = [@Html.Raw(HstrPlant)];
+
+    function getRGB(str) {
+        var match = str.match(/rgba?\((\d{1,3}), ?(\d{1,3}), ?(\d{1,3})\)?(?:, ?(\d(?:\.\d?))\))?/);
+        return match ? {
+            red: match[1],
+            green: match[2],
+            blue: match[3]
+        } : {};
+    }
+
+    function SetupTableSelectedColor() {
+        if ($('.navbar').getHexBackgroundColor() !== '#ffffff') {
+            document.styleSheets[document.styleSheets.length - 1].cssRules[0].style.backgroundColor
+                = $('.navbar').css('background-color');
+        } else {
+            document.styleSheets[document.styleSheets.length - 1].cssRules[0].style.backgroundColor
+                = '#222d32';
+        }
+    }
+
+    //function FillModalInfo(header, body) {
+
+    //}
+
+    $(document).ready(function () {
+        SetupTableSelectedColor()
+
+        //Initiate datatable
+        var table = $('#tb-referenceInfo').DataTable({
+            dom: '<"toolbar">frtip',
+            ajax: '@Html.Raw(Request.Url + "Data")',
             columns: [
                 @Html.Raw(Hstr.Substring(0, Hstr.Length - 3))
             ],
-            select: true,
-            scrollCollapse: true
+            select: { style: 'single', info: false },
+            scrollX: true,
+            scrollY: 430,
+            //bAutoWidth: false,
+            scrollCollapse: true,
+            orderCellsTop: true
         });
+        //Insert action buttons group over the runtime of datatable initiating
+        $("div.toolbar").html('<div class="btn-group btns-tb-toolbar">' +
+            '<button class="btn btn-default btn-md" title="Create" id="btn-create">Create</button>' +
+            '<button class="btn btn-default btn-md btn-hasState" title="Detail" id="btn-detail" disabled>Detail</button>' +
+            '<button class="btn btn-default btn-md btn-hasState" title="Delete" id="btn-delete" disabled>Delete</button>' +
+            '<input id="toggle-filter" type="checkbox" data-toggle="toggle" data-onstyle="default" data-on=\'<i class="fa fa-filter"></i> Filter On\' data-off=\'<i class="fa fa-filter"></i> Filter Off\'></div> ');
+        $('#toggle-filter').bootstrapToggle() //Initiate bootstrap-toggle button
+        //Toolbar and footer actions alignemnt
+        //$("div.toolbar").css('float', 'left');
+        //$("div.dataTables_info").css('float', 'left');
+
+        //Table column width alignment after some page loyaut changes
+        setTimeout(function () {
+            $.fn.dataTable.tables({ visible: true, api: true }).columns.adjust();
+        }, 100);
+
+        $(document).on('expanded.pushMenu', function () {
+            setTimeout(function () {
+                $.fn.dataTable.tables({ visible: true, api: true }).columns.adjust();
+            }, 300);
+
+        });
+
+        $(document).on('collapsed.pushMenu', function () {
+            setTimeout(function () {
+                $.fn.dataTable.tables({ visible: true, api: true }).columns.adjust();
+            }, 300);
+        });
+
+        //Show or hide filter inputs(serach per column)
+        $('#toggle-filter').change(function () {
+            //$("#filter-input").collapse('toggle');
+            if($("#filter-input").is(":visible")){
+                $('#filter-input').hide(150);
+                $('.dataTables_scrollHead .col-search').removeClass('width');
+            }else{
+                $('#filter-input').show(150);
+            }
+
+            setTimeout(function () {
+                $('.dataTables_scrollHead .col-search').each(function (i, e) {
+                    var thisWidth = $(this).width();
+                    var targetWidth = $(this).parent().parent().parent().find('tr:eq(0)').find('th:eq(' + i + ')').width();
+                    $(this).width(thisWidth >= targetWidth ? thisWidth : targetWidth);
+                });
+                $.fn.dataTable.tables({ visible: true, api: true }).columns.adjust();
+            }, 200);
+        });
+
+        //Search per column setup
+        var previousSearch;
+        $('#tb-referenceInfo thead, .dataTables_scrollHead thead').on('keyup change', '.col-search', function () {
+            if (previousSearch !== this.value) {
+                table
+                    .column($(this).parent().index())
+                    .search(this.value)
+                    .draw();
+            }
+
+            previousSearch = this.value;
+        });
+
+        //Table row click event to active detail and delete button
+        $('.dataTables_scrollBody tbody').on('click', 'tr', function () {
+            if ($(this).hasClass('selected')) {
+                $('.btn-hasState').prop('disabled', true);
+            }
+            else {
+                $('.btn-hasState').prop('disabled', false);
+            }
+        });
+
+        //Toolbar buttons function
+        $('#btn-delete').click(function () {
+            $("#modalWarning").modal({ backdrop: "static" });
+        });
+        $('#btn-detail').click(function () {
+            $("#modalDetail").modal({ backdrop: "static" });
+        });
+        $('#btn-create').click(function () {
+            $("#modalDetail").modal({ backdrop: "static" });
+        });
+
+        $('[data-skin]').on('click', function (e) {
+            SetupTableSelectedColor();
+        })
+
     });
+
+    //Jquery extendings
+    jQuery.fn.extend(
+        {
+            CopyCss: function (fromElement, cssType) {
+                var cssVal = $(fromElement).css(cssType);
+                $(this).css(cssType, cssVal);
+            },
+
+            removeCss: function (cssName) {
+                return this.each(function () {
+                    var curDom = $(this);
+                    jQuery.grep(cssName.split(","),
+                        function (cssToBeRemoved) {
+                            curDom.css(cssToBeRemoved, '');
+                        });
+                    return curDom;
+                });
+            },
+
+            getHexBackgroundColor: function () {
+                var rgb = $(this).css('background-color');
+                if (!rgb) {
+                    return '#FFFFFF'; //default color
+                }
+                var hex_rgb = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
+                function hex(x) { return ("0" + parseInt(x).toString(16)).slice(-2); }
+                if (hex_rgb) {
+                    return "#" + hex(hex_rgb[1]) + hex(hex_rgb[2]) + hex(hex_rgb[3]);
+                } else {
+                    return rgb; //ie8 returns background-color in hex format then it will make                 compatible, you can improve it checking if format is in hexadecimal
+                }
+            },
+        }) 
 </script>
+
+<style>
+    table.dataTable tbody > tr.selected, table.dataTable tbody > tr > .selected,
+    #modalDetail .modal-header, #modalDetail h4, #modalDetail .close,
+    .paginate_button.active > a:hover, .paginate_button.active > a:focus,
+    .paginate_button.active > a {
+        background-color: #222d32;
+        border-color: transparent;
+    }
+
+    .toolbar, .dataTables_info {
+        float: left;
+    }
+
+    .modal-header, h4, .close {
+        /*background-color: #5cb85c;*/
+        color: white !important;
+        text-align: center;
+        font-size: 30px;
+    }
+
+    .modal-header {
+        padding: 20px 50px;
+    }
+
+    .modal-body {
+        padding: 40px 50px;
+    }
+
+    #modalDetail .modal-footer {
+        background-color: #f9f9f9;
+    }
+
+
+    .loader {
+        border: 8px solid #f3f3f3; /* Light grey */
+        border-top: 8px solid #222d32; /* Blue */
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        animation: spin 1s linear infinite;
+        margin-left: 220px;
+    }
+
+    @@keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+</style>

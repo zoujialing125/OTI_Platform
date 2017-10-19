@@ -21,7 +21,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     @Styles.Render("~/Theme-Sidebar/css")
-    @*<link rel="stylesheet" href="https://adminlte.io/themes/AdminLTE/dist/css/AdminLTE.min.css">*@
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/Theme-Sidebar/js")
+    @Scripts.Render("~/DataTables/js")
+    @RenderSection("scripts", required: false)
+
     <!-- Google Font -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css" />
     <link rel="stylesheet"
@@ -102,10 +108,5 @@ desired effect
         immediately after the control sidebar -->
         <div class="control-sidebar-bg"></div>
     </div>
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @Scripts.Render("~/Theme-Sidebar/js")
-    @Scripts.Render("~/DataTables/js")
-    @RenderSection("scripts", required: false)
 </body>
 </html>
